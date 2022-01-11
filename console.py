@@ -14,16 +14,12 @@ start_mapper()
 
 db = Session()
 
-product_repository = ProductRepository(db)
-product = Product(description='descricao 2', price=10, technical_details='detalhes tecnicos', image='', visible=True)
-product_repository.add(product)
-print(product.id)
-print(product.description)
 
 coupon_repository = CouponsRepository(db)
 coupon = Coupons('abcde',datetime.now(),10,'percentage',19.00)
 coupon_repository.add(coupon)
 print(coupon.id)
+print(coupon.expire_at)
 print(coupon.code)
 
 supplier_repository = SuppliersRepository(db)
@@ -43,5 +39,13 @@ payment_method = PaymentMethods('cartao', True)
 payment_methods_repository.add(payment_method)
 print(payment_method.enabled)
 print(payment_method.id)
+
+product_repository = ProductRepository(db)
+product = Product(description='descricao 2', price=10, technical_details='detalhes tecnicos', image='', visible=True, supplier=supplier, category=category)
+product_repository.add(product)
+print(product.id)
+print(product.description)
+print(product.category.id)
+print(product.supplier.id)
 
 

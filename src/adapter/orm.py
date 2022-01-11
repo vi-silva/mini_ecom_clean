@@ -1,6 +1,6 @@
 from sqlalchemy import Table
 from sqlalchemy.orm import mapper
-from sqlalchemy.sql.schema import Column
+from sqlalchemy.sql.schema import Column, ForeignKey
 from sqlalchemy.sql.sqltypes import DATETIME, FLOAT, Boolean, Float, Integer, String
 from src.adapter.database import Base
 from src.domain.product.model import Coupons, PaymentMethods, Product, Category, Suppliers
@@ -15,6 +15,8 @@ table_product = Table(
   Column('technical_details', String(255)),
   Column('price', Float(10, 2)),
   Column('visible', Boolean),
+  Column('supplier_id',ForeignKey('suppliers.id')),
+  Column('category_id',ForeignKey('categories.id'))
 )
 
 table_category = Table(
