@@ -58,7 +58,7 @@ print(product.supplier.id)
 product_discounts_repository = ProductDiscountsRepository(db)
 product_discounts = ProductDiscounts(product, 'percentage', 12, payment_method)
 validator = ValidationUtils(product_discounts_repository)
-validator.validate_discount(product_discounts.products_id, product_discounts.payment_methods_id)
+validator.validate_discount(product_discounts)
 product_discounts_repository.add(product_discounts)
 print(product_discounts.id)
 
