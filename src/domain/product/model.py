@@ -21,3 +21,8 @@ class Coupons:
       self.limit = limit
       self.type = type
       self.value = value
+
+class PaymentMethods:
+  def __init__(self, name, enabled) -> None:
+      self.name = name
+      self.enabled = enabled

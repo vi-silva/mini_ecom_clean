@@ -1,6 +1,6 @@
-from src.domain.product.model import Suppliers
+from src.domain.product.model import Coupons
 from src.adapter.sqlalchemy_repository import SqlAlchemyRepository
 
 
-class SuppliersRepository(SqlAlchemyRepository[Suppliers]):
+class CouponsRepository(SqlAlchemyRepository[Coupons]):
   pass
