@@ -1,8 +1,8 @@
-"""basic tables and relationship
+"""basic table
 
-Revision ID: a09fd6e8bd0d
+Revision ID: f27aef3e8680
 Revises: 
-Create Date: 2022-01-11 15:43:11.945876
+Create Date: 2022-01-11 17:40:43.302970
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'a09fd6e8bd0d'
+revision = 'f27aef3e8680'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -49,20 +49,20 @@ def upgrade():
     sa.Column('technical_details', sa.String(length=255), nullable=True),
     sa.Column('price', sa.Float(precision=10, asdecimal=2), nullable=True),
     sa.Column('visible', sa.Boolean(), nullable=True),
-    sa.Column('supplier_id', sa.Integer(), nullable=True),
-    sa.Column('category_id', sa.Integer(), nullable=True),
-    sa.ForeignKeyConstraint(['category_id'], ['categories.id'], ),
-    sa.ForeignKeyConstraint(['supplier_id'], ['suppliers.id'], ),
+    sa.Column('suppliers_id', sa.Integer(), nullable=True),
+    sa.Column('categories_id', sa.Integer(), nullable=True),
+    sa.ForeignKeyConstraint(['categories_id'], ['categories.id'], ),
+    sa.ForeignKeyConstraint(['suppliers_id'], ['suppliers.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('product_discounts',
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
-    sa.Column('product_id', sa.Integer(), nullable=True),
-    sa.Column('payment_method_id', sa.Integer(), nullable=True),
+    sa.Column('products_id', sa.Integer(), nullable=True),
+    sa.Column('payment_methods_id', sa.Integer(), nullable=True),
     sa.Column('mode', sa.String(length=45), nullable=True),
     sa.Column('value', sa.FLOAT(), nullable=True),
-    sa.ForeignKeyConstraint(['payment_method_id'], ['payment_methods.id'], ),
-    sa.ForeignKeyConstraint(['product_id'], ['products.id'], ),
+    sa.ForeignKeyConstraint(['payment_methods_id'], ['payment_methods.id'], ),
+    sa.ForeignKeyConstraint(['products_id'], ['products.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###

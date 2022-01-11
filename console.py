@@ -1,3 +1,4 @@
+from src.domain.product_discounts.validation_utils import ValidationUtils
 from src.adapter.repositories.product_repository import ProductRepository
 from src.adapter.repositories.coupon_repository import CouponsRepository
 from src.adapter.repositories.suppliers_repository import SuppliersRepository
@@ -56,7 +57,10 @@ print(product.supplier.id)
 
 product_discounts_repository = ProductDiscountsRepository(db)
 product_discounts = ProductDiscounts(product, 'percentage', 12, payment_method)
+validator = ValidationUtils(product_discounts_repository)
+validator.validate_discount(product_discounts.products_id, product_discounts.payment_methods_id)
 product_discounts_repository.add(product_discounts)
 print(product_discounts.id)
 
-
+import pdb
+pdb.set_trace()

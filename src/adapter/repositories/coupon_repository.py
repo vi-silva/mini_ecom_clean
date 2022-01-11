@@ -1,4 +1,4 @@
-from src.domain.product.model import Coupons
+from src.domain.coupons.model import Coupons
 from src.adapter.sqlalchemy_repository import SqlAlchemyRepository
 
 

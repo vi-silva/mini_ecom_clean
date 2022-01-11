@@ -1,4 +1,4 @@
-from src.domain.product.model import Category
+from src.domain.category.model import Category
 from src.adapter.sqlalchemy_repository import SqlAlchemyRepository
 
 

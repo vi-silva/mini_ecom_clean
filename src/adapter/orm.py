@@ -4,7 +4,12 @@ from sqlalchemy.orm import mapper
 from sqlalchemy.sql.schema import Column, ForeignKey
 from sqlalchemy.sql.sqltypes import DATETIME, FLOAT, Boolean, Float, Integer, String
 from src.adapter.database import Base
-from src.domain.product.model import Coupons, PaymentMethods, Product, Category, ProductDiscounts, Suppliers
+from src.domain.product.model import Product
+from src.domain.product_discounts.model import ProductDiscounts
+from src.domain.suppliers.model import Suppliers
+from src.domain.coupons.model import Coupons
+from src.domain.category.model import Category
+from src.domain.payment_methods.model import PaymentMethods
 
 metadata = Base.metadata
 
@@ -16,8 +21,8 @@ table_product = Table(
   Column('technical_details', String(255)),
   Column('price', Float(10, 2)),
   Column('visible', Boolean),
-  Column('supplier_id',ForeignKey('suppliers.id')),
-  Column('category_id',ForeignKey('categories.id'))
+  Column('suppliers_id',ForeignKey('suppliers.id')),
+  Column('categories_id',ForeignKey('categories.id'))
 )
 
 table_category = Table(
@@ -58,16 +63,16 @@ table_product_discounts = Table(
   'product_discounts',
   metadata,
   Column('id', Integer, primary_key=True, autoincrement=True),
-  Column('product_id', ForeignKey('products.id')),
-  Column('payment_method_id', ForeignKey('payment_methods.id')),
+  Column('products_id', ForeignKey('products.id')),
+  Column('payment_methods_id', ForeignKey('payment_methods.id')),
   Column('mode',String(45)),
   Column('value',FLOAT)
 )
 
 def start_mapper():
-  mapper(Product, table_product)
   mapper(Category, table_category)
   mapper(Suppliers, table_suppliers)
   mapper(Coupons, table_coupons)
   mapper(PaymentMethods, table_payment_methods)
+  mapper(Product, table_product)
   mapper(ProductDiscounts, table_product_discounts)

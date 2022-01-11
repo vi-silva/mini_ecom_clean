@@ -6,4 +6,6 @@ class Product:
     self.image = image
     self.visible = visible
     self.supplier = supplier
+    self.suppliers_id = supplier.id
     self.category = category
+    self.categories_id = category.id

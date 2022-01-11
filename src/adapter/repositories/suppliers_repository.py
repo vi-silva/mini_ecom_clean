@@ -1,4 +1,4 @@
-from src.domain.product.model import Suppliers
+from src.domain.suppliers.model import Suppliers
 from src.adapter.sqlalchemy_repository import SqlAlchemyRepository
 
 
