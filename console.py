@@ -2,8 +2,9 @@ from src.adapter.repositories.product_repository import ProductRepository
 from src.adapter.repositories.coupon_repository import CouponsRepository
 from src.adapter.repositories.suppliers_repository import SuppliersRepository
 from src.adapter.repositories.category_repository import CategoryRepository
+from src.adapter.repositories.product_discounts_repository import ProductDiscountsRepository
 from src.adapter.repositories.payment_methods_repository import PaymentMethodsRepository
-from src.domain.product.model import PaymentMethods, Product, Coupons, Suppliers, Category
+from src.domain.product.model import PaymentMethods, Product, Coupons, ProductDiscounts, Suppliers, Category
 from src.adapter.database import Session
 from src.adapter.orm import start_mapper
 
@@ -47,5 +48,10 @@ print(product.id)
 print(product.description)
 print(product.category.id)
 print(product.supplier.id)
+
+product_discounts_repository = ProductDiscountsRepository(db)
+product_discounts = ProductDiscounts(product, 'percentage', 12, payment_method)
+product_discounts_repository.add(product_discounts)
+print(product_discounts.id)
 
 
