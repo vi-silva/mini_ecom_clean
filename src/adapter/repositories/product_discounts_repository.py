@@ -1,5 +1,4 @@
 from src.domain.product_discounts.model import ProductDiscounts
-from src.domain.product_discounts.validation_utils import ValidationUtils
 from src.adapter.sqlalchemy_repository import SqlAlchemyRepository
 
 

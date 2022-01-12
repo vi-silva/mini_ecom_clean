@@ -1,9 +1,11 @@
 from re import T
 from sqlalchemy import Table
-from sqlalchemy.orm import mapper
+from sqlalchemy.orm import mapper, relation, relationship
 from sqlalchemy.sql.schema import Column, ForeignKey
-from sqlalchemy.sql.sqltypes import DATETIME, FLOAT, Boolean, Float, Integer, String
+from sqlalchemy.sql.sqltypes import DATE, DATETIME, FLOAT, Boolean, Float, Integer, String
 from src.adapter.database import Base
+from src.domain.addresses.model import Addresses
+from src.domain.customers.model import Customers
 from src.domain.product.model import Product
 from src.domain.product_discounts.model import ProductDiscounts
 from src.domain.suppliers.model import Suppliers
@@ -69,10 +71,46 @@ table_product_discounts = Table(
   Column('value',FLOAT)
 )
 
+table_addresses = Table(
+  'addresses',
+  metadata,
+  Column('id', Integer, primary_key=True, autoincrement=True),
+  Column('address',String(255)),
+  Column('city',String(45)),
+  Column('state',String(2)),
+  Column('number',String(10)),
+  Column('zipcode',String(6)),
+  Column('neighbourhood',String(45)),
+  Column('primary',Boolean),
+  Column('customer_id',String(45), ForeignKey('customers.id'))
+)
+
+table_customers = Table(
+  'customers',
+  metadata,
+  Column('id', Integer, primary_key=True, autoincrement=True),
+  Column("first_name",String(45)),
+  Column("last_name",String(45)),
+  Column("phone_number",String(15)),
+  Column("genre",String(45)),
+  Column("document_id",String(45)),
+  Column("birth_date",DATE),
+)
+
 def start_mapper():
-  mapper(Category, table_category)
-  mapper(Suppliers, table_suppliers)
+  category_mapper = mapper(Category, table_category)
+  supplier_mapper = mapper(Suppliers, table_suppliers)
+  payment_methods_mapper = mapper(PaymentMethods, table_payment_methods)
+  product_discount_mapper = mapper(ProductDiscounts, table_product_discounts, properties={
+    'payment_methods': relationship(payment_methods_mapper)
+  })
   mapper(Coupons, table_coupons)
-  mapper(PaymentMethods, table_payment_methods)
-  mapper(Product, table_product)
-  mapper(ProductDiscounts, table_product_discounts)
+  mapper(Product, table_product, properties={
+    'categories':relationship(category_mapper),
+    'suppliers': relationship(supplier_mapper),
+    'discounts': relationship(product_discount_mapper)
+  })
+  addresses_mapper = mapper(Addresses, table_addresses)
+  mapper(Customers, table_customers, properties={
+    'addresses':relationship(addresses_mapper)
+  })

@@ -1,16 +1,15 @@
-from src.domain.product_discounts.validation_utils import ValidationUtils
+from src.domain.category.model import Category
+from src.domain.suppliers.model import Suppliers
+from src.domain.coupons.model import Coupons
+from src.domain.product.model import Product
+from src.domain.payment_methods.model import PaymentMethods
+from src.domain.product_discounts.model import ProductDiscounts
+from src.adapter.repositories.product_discounts_repository import ProductDiscountsRepository
 from src.adapter.repositories.product_repository import ProductRepository
 from src.adapter.repositories.coupon_repository import CouponsRepository
 from src.adapter.repositories.suppliers_repository import SuppliersRepository
 from src.adapter.repositories.category_repository import CategoryRepository
-from src.adapter.repositories.product_discounts_repository import ProductDiscountsRepository
 from src.adapter.repositories.payment_methods_repository import PaymentMethodsRepository
-from src.domain.product.model import Product
-from src.domain.product_discounts.model import ProductDiscounts
-from src.domain.suppliers.model import Suppliers
-from src.domain.coupons.model import Coupons
-from src.domain.category.model import Category
-from src.domain.payment_methods.model import PaymentMethods
 from src.adapter.database import Session
 from src.adapter.orm import start_mapper
 
@@ -57,8 +56,6 @@ print(product.supplier.id)
 
 product_discounts_repository = ProductDiscountsRepository(db)
 product_discounts = ProductDiscounts(product, 'percentage', 12, payment_method)
-validator = ValidationUtils(product_discounts_repository)
-validator.validate_discount(product_discounts)
 product_discounts_repository.add(product_discounts)
 print(product_discounts.id)
 
