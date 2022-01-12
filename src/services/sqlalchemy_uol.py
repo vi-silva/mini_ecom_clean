@@ -6,6 +6,7 @@ from src.adapter.repositories.addresses_repository import AddressesRepository
 from src.adapter.repositories.coupon_repository import CouponsRepository
 from src.adapter.repositories.customers_repository import CustomersRepository
 from src.adapter.repositories.payment_methods_repository import PaymentMethodsRepository
+from src.adapter.repositories.product_discounts_repository import ProductDiscountsRepository
 from src.domain.addresses.model import Addresses
 from src.domain.category.model import Category
 from src.domain.coupons.model import Coupons
@@ -29,6 +30,7 @@ class SqlAlchemyUnitOfWork:
     self.coupons_repository = CouponsRepository(self.session, Coupons)
     self.customers_repository = CustomersRepository(self.session, Customers)
     self.payment_methods_repository = PaymentMethodsRepository(self.session, PaymentMethods)
+    self.product_discounts_repository = ProductDiscountsRepository(self.session, ProductDiscountsRepository)
     
 
   def __exit__(self, *args):
