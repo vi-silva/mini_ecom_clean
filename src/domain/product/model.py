@@ -1,18 +1,20 @@
 from typing import List
+from src.domain.category.model import Category
 from src.domain.product_discounts.model import ProductDiscounts
+from src.domain.suppliers.model import Suppliers
 
 
 class Product:
-  def __init__(self, description, price, technical_details, image, visible, supplier, category):
+  def __init__(self, description, price, technical_details, image, visible, suppliers_id, categories_id):
     self.description = description  
     self.price = price
     self.technical_details = technical_details
     self.image = image
     self.visible = visible
-    self.supplier = supplier
-    self.suppliers_id = supplier.id
-    self.category = category
-    self.categories_id = category.id
+    self.supplier: Suppliers
+    self.suppliers_id = suppliers_id
+    self.category: Category
+    self.categories_id = categories_id
     self.discounts : List[ProductDiscounts] = []
 
     def add_discount(self, discount: ProductDiscounts):

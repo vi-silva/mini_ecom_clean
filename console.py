@@ -4,60 +4,39 @@ from src.domain.coupons.model import Coupons
 from src.domain.product.model import Product
 from src.domain.payment_methods.model import PaymentMethods
 from src.domain.product_discounts.model import ProductDiscounts
-from src.adapter.repositories.product_discounts_repository import ProductDiscountsRepository
-from src.adapter.repositories.product_repository import ProductRepository
-from src.adapter.repositories.coupon_repository import CouponsRepository
-from src.adapter.repositories.suppliers_repository import SuppliersRepository
-from src.adapter.repositories.category_repository import CategoryRepository
-from src.adapter.repositories.payment_methods_repository import PaymentMethodsRepository
+from src.services.address_service import create_address
+from src.services.customers_service import create_customer
+from src.services.product_discounts_service import create_product_discounts
+from src.services.product_service import create_product
+from src.services.coupon_service import create_coupon
+from src.services.suppliers_service import create_supplier
+from src.services.category_service import create_category
+from src.services.payment_methods_service import create_payment_method
+from src.services.sqlalchemy_uol import SqlAlchemyUnitOfWork
 from src.adapter.database import Session
 from src.adapter.orm import start_mapper
 
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 start_mapper()
+uow = SqlAlchemyUnitOfWork(Session())
 
-db = Session()
+create_address('Rua dos testes','testelandia','sp','74','18000000','Vale dos testes',True,1,uow)
 
+create_category('teste',uow)
 
-coupon_repository = CouponsRepository(db)
-coupon = Coupons('abcde',datetime.now(),10,'percentage',19.00)
-coupon_repository.add(coupon)
-print(coupon.id)
-print(coupon.expire_at)
-print(coupon.code)
+create_coupon('teste',datetime.now(),10,'percentage',19.00,uow)
 
-supplier_repository = SuppliersRepository(db)
-supplier = Suppliers('maicao')
-supplier_repository.add(supplier)
-print(supplier.name)
-print(supplier.id)
+create_customer('Testonio','testo','159999999','N','19928744',datetime.now()-timedelta(365*18),uow)
 
-category_repository = CategoryRepository(db)
-category = Category('alimentos')
-category_repository.add(category)
-print(category.name)
-print(category.id)
+create_payment_method('teste', True,uow)
 
-payment_methods_repository = PaymentMethodsRepository(db)
-payment_method = PaymentMethods('cartao', True)
-payment_methods_repository.add(payment_method)
-print(payment_method.enabled)
-print(payment_method.id)
+create_product_discounts(1, 'teste', 12, 1,uow)
 
-product_repository = ProductRepository(db)
-product = Product(description='descricao 2', price=10, technical_details='detalhes tecnicos', image='', visible=True, supplier=supplier, category=category)
-product_repository.add(product)
-print(product.id)
-print(product.description)
-print(product.category.id)
-print(product.supplier.id)
+create_product(description='teste 2', price=10, technical_details='detalhes tecnicos', image='', visible=True,suppliers_id=1,categories_id=1,uow=uow)
 
-product_discounts_repository = ProductDiscountsRepository(db)
-product_discounts = ProductDiscounts(product, 'percentage', 12, payment_method)
-product_discounts_repository.add(product_discounts)
-print(product_discounts.id)
+create_supplier('teste',uow)
 
 import pdb
 pdb.set_trace()

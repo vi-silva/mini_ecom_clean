@@ -1,12 +1,14 @@
+from typing import List
+
 class Customers:
-    def __init__(self, first_name, last_name, phone_number, genre, document_id, birth_date, addresses) -> None:
+    def __init__(self, first_name, last_name, phone_number, genre, document_id, birth_date) -> None:
         self.first_name = first_name
         self.last_name = last_name
         self.phone_number = phone_number
         self.genre = genre
         self.document_id = document_id
         self.birth_date = birth_date
-        self.addresses = addresses
+        self.addresses = []
 
     def add_address(self, new_address):
         if new_address.primary == False:
