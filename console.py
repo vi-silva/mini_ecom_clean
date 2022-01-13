@@ -1,10 +1,3 @@
-from src.adapter.repositories.product_repository import ProductRepository
-from src.domain.category.model import Category
-from src.domain.suppliers.model import Suppliers
-from src.domain.coupons.model import Coupons
-from src.domain.product.model import Product
-from src.domain.payment_methods.model import PaymentMethods
-from src.domain.product_discounts.model import ProductDiscounts
 from src.services.customers_service import create_customer, create_address
 from src.services.product_discounts_service import create_product_discounts
 from src.services.product_service import create_product
