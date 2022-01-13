@@ -5,8 +5,7 @@ from src.domain.coupons.model import Coupons
 from src.domain.product.model import Product
 from src.domain.payment_methods.model import PaymentMethods
 from src.domain.product_discounts.model import ProductDiscounts
-from src.services.address_service import create_address
-from src.services.customers_service import create_customer
+from src.services.customers_service import create_customer, create_address
 from src.services.product_discounts_service import create_product_discounts
 from src.services.product_service import create_product
 from src.services.coupon_service import create_coupon
