@@ -26,7 +26,7 @@ def upgrade():
     op.create_table('coupons',
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
     sa.Column('code', sa.String(length=10), nullable=True),
-    sa.Column('expire_at', sa.DATETIME(), nullable=True),
+    sa.Column('expire_at', sa.DATE(), nullable=True),
     sa.Column('limit', sa.Integer(), nullable=True),
     sa.Column('type', sa.String(length=15), nullable=True),
     sa.Column('value', sa.FLOAT(), nullable=True),

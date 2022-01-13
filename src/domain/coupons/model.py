@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import date
 
 
 class Coupons:
@@ -10,5 +10,5 @@ class Coupons:
       self.value = value
 
   def verify_date(self):
-    if datetime.now() > self.expire_at:
+    if date.today() > self.expire_at:
       raise Exception()

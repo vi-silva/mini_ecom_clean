@@ -37,7 +37,7 @@ def upgrade():
     sa.Column('zipcode', sa.String(length=6), nullable=True),
     sa.Column('neighbourhood', sa.String(length=45), nullable=True),
     sa.Column('primary', sa.Boolean(), nullable=True),
-    sa.Column('customer_id', sa.String(length=45), nullable=True),
+    sa.Column('customer_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['customer_id'], ['customers.id'], ),
     sa.PrimaryKeyConstraint('id')
     )

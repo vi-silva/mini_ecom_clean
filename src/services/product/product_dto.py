@@ -8,5 +8,5 @@ class ProductDTO:
   technical_details: str
   image: str
   visible: bool
-  category_id: int
-  supplier_id: int
+  categories_id: int
+  suppliers_id: int

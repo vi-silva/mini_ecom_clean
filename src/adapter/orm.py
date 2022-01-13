@@ -1,8 +1,8 @@
 from re import T
 from sqlalchemy import Table
-from sqlalchemy.orm import mapper, relation, relationship
+from sqlalchemy.orm import mapper, relationship
 from sqlalchemy.sql.schema import Column, ForeignKey
-from sqlalchemy.sql.sqltypes import DATE, DATETIME, FLOAT, Boolean, Float, Integer, String
+from sqlalchemy.sql.sqltypes import DATE, FLOAT, Boolean, Float, Integer, String
 from src.adapter.database import Base
 from src.domain.addresses.model import Addresses
 from src.domain.customers.model import Customers
@@ -46,7 +46,7 @@ table_coupons = Table(
   metadata,
   Column('id', Integer, primary_key=True, autoincrement=True),
   Column('code', String(10)),
-  Column('expire_at', DATETIME),
+  Column('expire_at', DATE),
   Column('limit', Integer),
   Column('type', String(15)),
   Column('value', FLOAT),

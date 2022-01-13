@@ -1,10 +1,10 @@
 from dataclasses import dataclass
-from datetime import datetime
+from datetime import date
 
 @dataclass
 class CouponDTO:
     code: str
-    expire_at: datetime
+    expire_at: date
     limit: int
     type: str
     value: float
