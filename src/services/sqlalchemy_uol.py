@@ -15,11 +15,11 @@ from src.domain.product_discounts.model import ProductDiscounts
 from src.domain.suppliers.model import Suppliers
 from src.domain.payment_methods.model import PaymentMethods
 from src.domain.product.model import Product
-
+from src.adapter.database import Session
 
 class SqlAlchemyUnitOfWork:
-  def __init__(self, session):
-      self.session = session
+  def __init__(self):
+      self.session = Session()
 
 
   def __enter__(self):

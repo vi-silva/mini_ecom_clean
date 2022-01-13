@@ -1,10 +1,10 @@
-from src.services.customers_service import create_customer, create_address
-from src.services.product_discounts_service import create_product_discounts
-from src.services.product_service import create_product
-from src.services.coupon_service import create_coupon
-from src.services.suppliers_service import create_supplier
-from src.services.category_service import create_category
-from src.services.payment_methods_service import create_payment_method
+from src.services.customers.customers_service import create_customer, create_address
+from src.services.product_discount.product_discounts_service import create_product_discounts
+from src.services.product.product_service import create_product
+from src.services.coupon.coupon_service import create_coupon
+from src.services.suppliers.suppliers_service import create_supplier
+from src.services.category.category_service import create_category
+from src.services.payment_method.payment_methods_service import create_payment_method
 from src.services.sqlalchemy_uol import SqlAlchemyUnitOfWork
 from src.adapter.database import Session
 from src.adapter.orm import start_mapper
