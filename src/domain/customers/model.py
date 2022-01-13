@@ -13,7 +13,8 @@ class Customers:
     def add_address(self, new_address):
         if new_address.primary == False:
             self.addresses.append(new_address)
-        main = [address for address in self.addresses if address.primary == True][0]
+        main = [address for address in self.addresses if address.primary == True]
         if main:
-            main.primary == False
+            for address in main:
+                address.primary = False
         self.addresses.append(new_address)

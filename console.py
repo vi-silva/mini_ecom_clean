@@ -1,3 +1,4 @@
+from src.adapter.repositories.product_repository import ProductRepository
 from src.domain.category.model import Category
 from src.domain.suppliers.model import Suppliers
 from src.domain.coupons.model import Coupons
@@ -15,6 +16,7 @@ from src.services.payment_methods_service import create_payment_method
 from src.services.sqlalchemy_uol import SqlAlchemyUnitOfWork
 from src.adapter.database import Session
 from src.adapter.orm import start_mapper
+import uuid
 
 from datetime import datetime, timedelta
 
@@ -26,7 +28,7 @@ create_address('Rua dos testes','testelandia','sp','74','18000000','Vale dos tes
 
 create_category('teste',uow)
 
-create_coupon('teste',datetime.now(),10,'percentage',19.00,uow)
+create_coupon(str(uuid.uuid4()),datetime.now()+timedelta(15),10,'percentage',19.00,uow)
 
 create_customer('Testonio','testo','159999999','N','19928744',datetime.now()-timedelta(365*18),uow)
 

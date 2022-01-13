@@ -23,7 +23,6 @@ class SqlAlchemyUnitOfWork:
 
 
   def __enter__(self):
-    self.payment_method_repository = PaymentMethodsRepository(self.session, PaymentMethods)
     self.category_repository = CategoryRepository(self.session, Category)
     self.supplier_repository = SuppliersRepository(self.session, Suppliers)
     self.product_repository = ProductRepository(self.session, Product)

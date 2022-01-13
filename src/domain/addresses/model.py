@@ -2,7 +2,7 @@ from src.domain.customers.model import Customers
 
 
 class Addresses:
-    def __init__(self, address, city, state, number, zipcode, neighbourhood, primary, customer_id) -> None:
+    def __init__(self, address, city, state, number, zipcode, neighbourhood, primary, customer_id, customer) -> None:
         self.address = address
         self.city = city
         self.state = state
@@ -11,4 +11,4 @@ class Addresses:
         self.neighbourhood = neighbourhood
         self.primary = primary
         self.customer_id = customer_id
-        self.customer: Customers
+        self.customer = customer
