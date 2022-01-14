@@ -6,6 +6,7 @@ from sqlalchemy.sql.sqltypes import DATE, FLOAT, Boolean, Float, Integer, String
 from src.adapter.database import Base
 from src.domain.addresses.model import Addresses
 from src.domain.customers.model import Customers
+from src.domain.order.model import Order
 from src.domain.product.model import Product
 from src.domain.product_discounts.model import ProductDiscounts
 from src.domain.suppliers.model import Suppliers
@@ -97,6 +98,20 @@ table_customers = Table(
   Column("birth_date",DATE),
 )
 
+table_orders = Table(
+  'orders',
+  metadata,
+  Column('id', Integer, primary_key=True, autoincrement=True),
+  Column('number', String(10)),
+  Column('status', String(15)),
+  Column('customer_id', Integer, ForeignKey('customers.id')),
+  Column('created_at', DATE),
+  Column('address_id', Integer, ForeignKey('addresses.id')),
+  Column('total_value', Float),
+  Column('payment_methods_id', Integer, ForeignKey('payment_methods.id')),
+  Column('total_discount', Float)
+)
+
 def start_mapper():
   category_mapper = mapper(Category, table_category)
   supplier_mapper = mapper(Suppliers, table_suppliers)
@@ -114,3 +129,4 @@ def start_mapper():
   mapper(Customers, table_customers, properties={
     'addresses':relationship(addresses_mapper)
   })
+  mapper(Order, table_orders)

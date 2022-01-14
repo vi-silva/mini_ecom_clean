@@ -1,9 +1,7 @@
-from dataclasses import dataclass
-from typing import List
+from pydantic import BaseModel
 from datetime import date
 
-@dataclass
-class CustomerDTO:
+class CreateCustomerSchema(BaseModel):
     first_name: str
     last_name :str
     phone_number :str

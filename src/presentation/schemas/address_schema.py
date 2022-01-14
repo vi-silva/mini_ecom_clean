@@ -1,7 +1,6 @@
-from dataclasses import dataclass
+from pydantic import BaseModel
 
-@dataclass
-class AddressDTO:
+class CreateAddressSchema(BaseModel):
     address: str
     city: str
     state: str
